@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:test_project/app/domain/usecases/register_usecase.dart';
+import 'package:test_project/app/routes/app_pages.dart';
 
 class RegisterController extends GetxController {
   RegisterController(this._registerUsecase);
@@ -49,7 +52,8 @@ class RegisterController extends GetxController {
       // After succeded register new account, it will directly go to home page (auto login)
       _storage.write('current_user_id', newUser.id);
 
-      // Get.toNamed(page)
+      unawaited(Get.toNamed(Routes.chatDashboard));
+
       print('yahur2');
     } catch (e) {
       if (e.toString().toLowerCase().contains('already taken')) {

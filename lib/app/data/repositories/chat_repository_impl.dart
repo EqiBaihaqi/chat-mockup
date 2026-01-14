@@ -35,18 +35,17 @@ class ChatRepositoryImpl implements ChatRepository {
 
   @override
   Future<void> sendMessage(int chatRoomId, int senderId, String message) async {
-    // 1. Create Model
+    // Create Model
     final msgModel = ChatMessageModel(
       message: message,
       timestamp: DateTime.now().millisecondsSinceEpoch,
     );
 
-    // 2. Link Relations (ObjectBox Way)
     // We just set the targetId. ObjectBox handles the rest.
     msgModel.chatRoom.targetId = chatRoomId;
     msgModel.sender.targetId = senderId;
 
-    // 3. Save
+    // Save
     _messageBox.put(msgModel);
   }
 

@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/state_manager.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:test_project/app/domain/usecases/login_usecase.dart';
+import 'package:test_project/app/routes/app_pages.dart';
 
 class LoginController extends GetxController {
   LoginController(this._loginUseCase);
@@ -35,7 +39,8 @@ class LoginController extends GetxController {
         await _storage.write('current_user_id', user.id);
 
         // Navigate to Home
-        // Get.toNamed();
+        unawaited(Get.toNamed(Routes.chatDashboard));
+
         print('yahur');
       } else {
         errorMessageLogin.value = 'Incorrect username or password';
