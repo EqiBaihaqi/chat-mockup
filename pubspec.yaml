@@ -39,6 +39,7 @@ dependencies:
   get: ^4.7.3
   get_storage: ^2.1.1
   build_runner: ^2.10.5
+  google_fonts: ^7.0.2
 
 dev_dependencies:
   flutter_test:
