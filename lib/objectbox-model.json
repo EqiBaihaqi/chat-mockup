@@ -1,0 +1,108 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:12790774084620500",
+      "lastPropertyId": "4:8059238507281913918",
+      "name": "UserModel",
+      "properties": [
+        {
+          "id": "1:7540019943615903984",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:8747007725309964270",
+          "name": "name",
+          "indexId": "1:6379517092237035335",
+          "type": 9,
+          "flags": 2080
+        },
+        {
+          "id": "3:8557975432429717542",
+          "name": "username",
+          "type": 9
+        },
+        {
+          "id": "4:8059238507281913918",
+          "name": "password",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:2267564712057135240",
+      "lastPropertyId": "5:7696219436314113396",
+      "name": "ChatMessageModel",
+      "properties": [
+        {
+          "id": "1:3444853466991228274",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:6290576034609342455",
+          "name": "message",
+          "type": 9
+        },
+        {
+          "id": "3:4123216944470245332",
+          "name": "timestamp",
+          "type": 6
+        },
+        {
+          "id": "4:3055819672919161152",
+          "name": "chatRoomId",
+          "indexId": "2:5665937303908695428",
+          "type": 11,
+          "flags": 520,
+          "relationTarget": "ChatRoomModel"
+        },
+        {
+          "id": "5:7696219436314113396",
+          "name": "senderId",
+          "indexId": "3:1967064503292770279",
+          "type": 11,
+          "flags": 520,
+          "relationTarget": "UserModel"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "3:6224291460023961899",
+      "lastPropertyId": "2:3979263424951001486",
+      "name": "ChatRoomModel",
+      "properties": [
+        {
+          "id": "1:8942107194665953246",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3979263424951001486",
+          "name": "name",
+          "type": 9
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "3:6224291460023961899",
+  "lastIndexId": "3:1967064503292770279",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}

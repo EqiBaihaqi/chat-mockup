@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:test_project/app/di/dependency_injection.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
+  await initService();
 }
 
 class MyApp extends StatelessWidget {
