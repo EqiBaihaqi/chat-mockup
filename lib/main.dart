@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.white)),
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
+      debugShowCheckedModeBanner: false,
     );
   }
 }
