@@ -49,27 +49,63 @@ class ChatRepositoryImpl implements ChatRepository {
     _messageBox.put(msgModel);
   }
 
-  @override
+ @override
   Future<void> seedChatData() async {
+    // Only seed if rooms are empty
     if (_roomBox.isEmpty()) {
-      // Create 2 Rooms
+      
+      // 1. Create and Save Rooms
+      // Note: After putMany, room1 and room2 will automatically get their IDs assigned.
       final room1 = ChatRoomModel(name: 'General Tech');
       final room2 = ChatRoomModel(name: 'Random Talks');
-
-      // Save Rooms (IDs generated)
+      
       _roomBox.putMany([room1, room2]);
 
-      // Create a Seed Message in Room 1
-      // Assuming User ID 1 (Alice) exists from Auth Seeding
-      final seedMsg = ChatMessageModel(
-        message: 'Welcome to the tech channel! (Seed)',
-        timestamp: DateTime.now().millisecondsSinceEpoch,
-      );
+      // 2. Prepare Messages
+      // We use DateTime subtraction so messages appear in the past (History)
+      final now = DateTime.now();
 
-      seedMsg.chatRoom.target = room1;
-      seedMsg.sender.targetId = 1; // Alice
+      final messages = [
+        // --- Conversation in Room 1 (General Tech) ---
+        ChatMessageModel(
+          message: 'Welcome to the tech channel guys!',
+          timestamp: now.subtract(const Duration(minutes: 60)).millisecondsSinceEpoch,
+        )
+          ..chatRoom.target = room1
+          ..sender.targetId = 1, // Alice
 
-      _messageBox.put(seedMsg);
+        ChatMessageModel(
+          message: 'Hey Alice! Are you using GetX for the test?',
+          timestamp: now.subtract(const Duration(minutes: 55)).millisecondsSinceEpoch,
+        )
+          ..chatRoom.target = room1
+          ..sender.targetId = 2, // Bob
+
+        ChatMessageModel(
+          message: 'Yes, combining it with ObjectBox for local storage.',
+          timestamp: now.subtract(const Duration(minutes: 50)).millisecondsSinceEpoch,
+        )
+          ..chatRoom.target = room1
+          ..sender.targetId = 1, // Alice
+          
+        ChatMessageModel(
+          message: 'Nice choice! Very fast.',
+          timestamp: now.subtract(const Duration(minutes: 48)).millisecondsSinceEpoch,
+        )
+          ..chatRoom.target = room1
+          ..sender.targetId = 2, // Bob
+
+        // --- Conversation in Room 2 (Random Talks) ---
+        ChatMessageModel(
+          message: 'Has anyone seen my coffee?',
+          timestamp: now.subtract(const Duration(hours: 2)).millisecondsSinceEpoch,
+        )
+          ..chatRoom.target = room2
+          ..sender.targetId = 2, // Bob
+      ];
+
+      // 3. Save all messages at once
+      _messageBox.putMany(messages);
     }
   }
 }

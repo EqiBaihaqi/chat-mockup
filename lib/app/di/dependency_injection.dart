@@ -18,4 +18,5 @@ Future<void> initService() async {
 
   // Seeding trigger
   await Get.find<AuthRepository>().seedDefaultUser();
+  await Get.find<ChatRepository>().seedChatData();
 }
