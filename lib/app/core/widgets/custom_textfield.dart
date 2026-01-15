@@ -5,18 +5,22 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final TextEditingController controller;
   final TextInputType keyboardType;
-  final bool obscureText;
+  final bool isPassword;
   final Function(String)? onChanged;
   final String? Function(String?)? validator;
+  final Function()? onTapViewPassword;
+  final bool isHidePassword;
 
   const CustomTextField({
     super.key,
     required this.hintText,
     required this.controller,
     this.keyboardType = TextInputType.text,
-    this.obscureText = false,
+    this.isPassword = false,
     this.onChanged,
     this.validator,
+    this.onTapViewPassword,
+    this.isHidePassword = false,
   });
 
   @override
@@ -31,9 +35,10 @@ class CustomTextField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       keyboardType: keyboardType,
-      obscureText: obscureText,
+      obscureText: isHidePassword,
       onChanged: onChanged,
       validator: validator,
+
       style: AppTextStyles.bodyMedium, // Menggunakan style responsive
       decoration: InputDecoration(
         hintText: hintText,
@@ -44,6 +49,14 @@ class CustomTextField extends StatelessWidget {
           horizontal: 16,
           vertical: 14,
         ),
+        suffixIcon: isPassword
+            ? IconButton(
+                onPressed: onTapViewPassword,
+                icon: Icon(
+                  isHidePassword ? Icons.visibility : Icons.visibility_off,
+                ),
+              )
+            : null,
 
         // State Borders
         border: OutlineInputBorder(
