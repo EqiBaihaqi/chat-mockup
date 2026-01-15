@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:test_project/app/features/chat/bindings/chat_binding.dart';
-import 'package:test_project/app/features/chat/views/chat_view.dart';
+import 'package:test_project/app/features/detail_chat/bindings/detail_chat_binding.dart';
+import 'package:test_project/app/features/detail_chat/views/detail_chat_view.dart';
 import 'package:test_project/app/features/chat_dahsboard/bindings/chat_dashboard_binding.dart';
 import 'package:test_project/app/features/chat_dahsboard/views/chat_dashboard_view.dart';
 import 'package:test_project/app/features/login/bindings/login_binding.dart';
@@ -29,7 +29,11 @@ class AppPages {
       page: ChatDashboardView.new,
       binding: ChatDashboardBinding(),
     ),
-    GetPage(name: _Paths.chat, page: ChatView.new, binding: ChatBinding()),
+    GetPage(
+      name: _Paths.chat,
+      page: DetailChatView.new,
+      binding: ChatBinding(),
+    ),
     GetPage(
       name: _Paths.splash,
       page: SplashView.new,
