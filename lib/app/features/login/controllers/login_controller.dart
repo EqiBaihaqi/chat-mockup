@@ -20,6 +20,9 @@ class LoginController extends GetxController {
 
   RxBool isLoading = false.obs;
 
+  RxBool isHidePassword = true.obs;
+  void toggleIsHidePassword() => isHidePassword.toggle();
+
   Future<void> login() async {
     errorMessageLogin.value = '';
     if (usernameController.text.isEmpty || passwordController.text.isEmpty) {

@@ -20,6 +20,10 @@ class RegisterController extends GetxController {
 
   var errorMessageRegister = ''.obs;
 
+  RxBool isHidePassword = true.obs;
+
+  void isHidePasswordToggle() => isHidePassword.toggle();
+
   Future<void> register() async {
     errorMessageRegister.value = '';
 
@@ -64,5 +68,13 @@ class RegisterController extends GetxController {
     } finally {
       isLoadingRegister.value = false;
     }
+  }
+
+  @override
+  void onClose() {
+    nameController.dispose();
+    usernameController.dispose();
+    passwordController.dispose();
+    super.onClose();
   }
 }

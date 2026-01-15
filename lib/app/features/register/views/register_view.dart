@@ -39,10 +39,14 @@ class RegisterView extends GetView<RegisterController> {
                 ),
                 SizedBox(height: 16),
                 Text('Password', style: AppTextStyles.bodyMedium),
-                CustomTextField(
-                  hintText: 'Password',
-                  controller: controller.passwordController,
-                  obscureText: true,
+                Obx(
+                  () => CustomTextField(
+                    hintText: 'Password',
+                    controller: controller.passwordController,
+                    isPassword: true,
+                    isHidePassword: controller.isHidePassword.value,
+                    onTapViewPassword: () => controller.isHidePasswordToggle(),
+                  ),
                 ),
                 SizedBox(height: 12),
                 Obx(() {
