@@ -1,15 +1,19 @@
 import 'package:get/get.dart';
+import 'package:test_project/app/core/widgets/logout_dialog.dart';
 import 'package:test_project/app/domain/entity/chat_room.dart';
 import 'package:test_project/app/domain/usecases/get_chat_room_usecase.dart';
 import 'package:test_project/app/routes/app_pages.dart';
+import 'package:test_project/app/utils/session/session_manager.dart';
 
 class ChatDashboardController extends GetxController {
+  ChatDashboardController(this.getChatRoomUsecase, this._session);
+
   final GetChatRoomUsecase getChatRoomUsecase;
-  ChatDashboardController({required this.getChatRoomUsecase});
 
   // State
   final isLoading = true.obs;
   final chatList = <ChatRoom>[].obs;
+  final SessionManager _session;
 
   @override
   void onInit() {
@@ -32,5 +36,18 @@ class ChatDashboardController extends GetxController {
   void onChatTap(int id) {
     // Navigate to chat detail
     Get.toNamed(Routes.chat, arguments: id);
+  }
+
+  void showDialogLogout() {
+    Get.dialog(LogoutDialog(onConfirm: () => logout()));
+  }
+
+  Future<void> logout() async {
+    try {
+      await _session.clearAll();
+      Get.offAllNamed(Routes.login);
+    } catch (e) {
+      Get.snackbar('Error', e.toString());
+    }
   }
 }

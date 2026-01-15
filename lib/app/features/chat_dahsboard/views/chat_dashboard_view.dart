@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_project/app/domain/entity/chat_room.dart';
 import 'package:test_project/app/features/chat_dahsboard/widgets/chat_tile.dart';
 import '../controllers/chat_dashboard_controller.dart';
 
@@ -10,7 +9,16 @@ class ChatDashboardView extends GetView<ChatDashboardController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Messages'), centerTitle: true),
+      appBar: AppBar(
+        title: const Text('Messages'),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () => controller.showDialogLogout(),
+            icon: Icon(Icons.logout),
+          ),
+        ],
+      ),
       body: Obx(() {
         if (controller.isLoading.value) {
           return const Center(child: CircularProgressIndicator());

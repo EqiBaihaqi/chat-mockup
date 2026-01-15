@@ -6,9 +6,11 @@ import 'package:get/state_manager.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:test_project/app/domain/usecases/login_usecase.dart';
 import 'package:test_project/app/routes/app_pages.dart';
+import 'package:test_project/app/utils/session/session_key.dart';
+import 'package:test_project/app/utils/session/session_manager.dart';
 
 class LoginController extends GetxController {
-  LoginController(this._loginUseCase);
+  LoginController(this._loginUseCase, this._sessionManager);
   final LoginUseCase _loginUseCase;
 
   final _storage = GetStorage();
@@ -22,6 +24,8 @@ class LoginController extends GetxController {
 
   RxBool isHidePassword = true.obs;
   void toggleIsHidePassword() => isHidePassword.toggle();
+
+  final SessionManager _sessionManager;
 
   Future<void> login() async {
     errorMessageLogin.value = '';
@@ -39,10 +43,10 @@ class LoginController extends GetxController {
 
       if (user != null) {
         // save the cureent user id
-        await _storage.write('current_user_id', user.id);
+        _sessionManager.write(SessionKey.currentUserId, user.id);
 
         // Navigate to Home
-        unawaited(Get.toNamed(Routes.chatDashboard));
+        unawaited(Get.offAllNamed(Routes.chatDashboard));
 
         print('yahur');
       } else {
