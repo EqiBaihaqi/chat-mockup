@@ -3,6 +3,7 @@ import 'package:test_project/app/data/repositories/auth_repository_impl.dart';
 import 'package:test_project/app/data/repositories/chat_repository_impl.dart';
 import 'package:test_project/app/domain/repositories/auth_repository.dart';
 import 'package:test_project/app/domain/repositories/chat_repository.dart';
+import 'package:test_project/app/utils/session/session_manager.dart';
 import 'package:test_project/objectbox.g.dart';
 
 Future<void> initService() async {
@@ -19,4 +20,7 @@ Future<void> initService() async {
   // Seeding trigger
   await Get.find<AuthRepository>().seedDefaultUser();
   await Get.find<ChatRepository>().seedChatData();
+
+  // Register session manager
+  Get.lazyPut<SessionManager>(() => SessionManagerImpl(), fenix: true);
 }
