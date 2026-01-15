@@ -33,9 +33,12 @@ class ChatDashboardController extends GetxController {
     }
   }
 
-  void onChatTap(int id) {
+  void onChatTap(int id, String roomName) {
     // Navigate to chat detail
-    Get.toNamed(Routes.chat, arguments: id);
+    Get.toNamed(
+      Routes.chat,
+      arguments: {'roomId': id, 'roomName': roomName},
+    );
   }
 
   void showDialogLogout() {

@@ -30,12 +30,12 @@ class ChatDashboardView extends GetView<ChatDashboardController> {
 
         return ListView.separated(
           itemCount: controller.chatList.length,
-          separatorBuilder: (_, __) => const Divider(height: 1),
+          separatorBuilder: (_, _) => const Divider(height: 1),
           itemBuilder: (context, index) {
             final chat = controller.chatList[index];
             return ChatTile(
               chat: chat,
-              onTap: () => controller.onChatTap(chat.id),
+              onTap: () => controller.onChatTap(chat.id, chat.name),
             );
           },
         );

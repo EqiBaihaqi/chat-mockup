@@ -16,5 +16,6 @@ class ChatDashboardBinding extends Bindings {
     Get.lazyPut<GetChatRoomUsecase>(
       () => GetChatRoomUsecase(Get.find<ChatRepository>()),
     );
+    Get.lazyPut<SessionManager>(() => SessionManagerImpl());
   }
 }
