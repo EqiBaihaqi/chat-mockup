@@ -49,7 +49,7 @@ class RegisterHeader extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () async {
-                        unawaited(Get.toNamed(Routes.login));
+                        unawaited(Get.offAndToNamed(Routes.login));
                       },
                       child: Text(
                         'Sign in',

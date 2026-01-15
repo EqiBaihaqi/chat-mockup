@@ -13,8 +13,6 @@ class LoginController extends GetxController {
   LoginController(this._loginUseCase, this._sessionManager);
   final LoginUseCase _loginUseCase;
 
-  final _storage = GetStorage();
-
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -60,9 +58,9 @@ class LoginController extends GetxController {
   }
 
   @override
-  void onClose() {
+  void dispose() {
     usernameController.dispose();
     passwordController.dispose();
-    super.onClose();
+    super.dispose();
   }
 }

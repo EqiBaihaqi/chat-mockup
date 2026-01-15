@@ -13,9 +13,10 @@ class UserModel {
   @Id()
   int id;
 
-  @Unique()
   String name;
+  @Unique()
   String username;
+
   String password;
 
   // Mapper: model -> entity

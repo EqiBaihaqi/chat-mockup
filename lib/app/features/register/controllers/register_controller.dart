@@ -57,6 +57,9 @@ class RegisterController extends GetxController {
         ),
       );
       unawaited(Get.toNamed(Routes.login));
+      nameController.text = '';
+      usernameController.text = '';
+      passwordController.text = '';
 
       print('yahur2');
     } catch (e) {
@@ -71,10 +74,10 @@ class RegisterController extends GetxController {
   }
 
   @override
-  void onClose() {
+  void dispose() {
     nameController.dispose();
     usernameController.dispose();
     passwordController.dispose();
-    super.onClose();
+    super.dispose();
   }
 }

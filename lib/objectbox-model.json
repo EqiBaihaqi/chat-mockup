@@ -17,14 +17,14 @@
         {
           "id": "2:8747007725309964270",
           "name": "name",
-          "indexId": "1:6379517092237035335",
-          "type": 9,
-          "flags": 2080
+          "type": 9
         },
         {
           "id": "3:8557975432429717542",
           "name": "username",
-          "type": 9
+          "indexId": "4:3948137124980824960",
+          "type": 9,
+          "flags": 2080
         },
         {
           "id": "4:8059238507281913918",
@@ -95,13 +95,15 @@
     }
   ],
   "lastEntityId": "3:6224291460023961899",
-  "lastIndexId": "3:1967064503292770279",
+  "lastIndexId": "4:3948137124980824960",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
   "modelVersionParserMinimum": 5,
   "retiredEntityUids": [],
-  "retiredIndexUids": [],
+  "retiredIndexUids": [
+    6379517092237035335
+  ],
   "retiredPropertyUids": [],
   "retiredRelationUids": [],
   "version": 1
